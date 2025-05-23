@@ -44,11 +44,7 @@
     <p class="score">
        <strong>Score:</strong> <b id = "scoreEl">0</b>
     </p>
-  <h2>Ranking</h2>
-  <ol id="ranking-list"></ol>
-  <button onclick="resetRankingDisplay()" style="background-color: #555; color: white; border: none; padding: 8px 12px; cursor: pointer; margin-top: 10px;">Resetar Ranking</button>
-   </div>
-   <div id="center">
+
     
        <canvas></canvas>
    </div>
@@ -57,14 +53,7 @@
    </div>
 
     <script src="./index.js"></script>
-  <script>
-  function resetRankingDisplay() {
-    resetRanking();
-    const rankingList = document.getElementById('ranking-list');
-    rankingList.innerHTML = ''; // Limpa a lista visualmente
-    displayRanking(); // Re-exibe o ranking atualizado
-  }
-</script>
+ 
     
 </body>
 </html>
