@@ -57,6 +57,14 @@
    </div>
 
     <script src="./index.js"></script>
+  <script>
+  function resetRankingDisplay() {
+    resetRanking();
+    const rankingList = document.getElementById('ranking-list');
+    rankingList.innerHTML = ''; // Limpa a lista visualmente
+    displayRanking(); // Re-exibe o ranking atualizado
+  }
+</script>
     
 </body>
 </html>
