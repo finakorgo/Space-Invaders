@@ -512,34 +512,4 @@ addEventListener('keyup', ({ key }) => {
     }
 });
 
-function getRanking() {
-    const rankingString = localStorage.getItem('spaceInvadersRanking');
-    if (rankingString) {
-        return JSON.parse(rankingString);
-    }
-    return [];
-}
-
-function updateRanking(newScore) {
-    const ranking = getRanking();
-    ranking.push(newScore);
-    ranking.sort((a, b) => b - a); // Ordena em ordem decrescente
-    const top5 = ranking.slice(0, 5);
-    localStorage.setItem('spaceInvadersRanking', JSON.stringify(top5));
-}
-
-function displayRanking() {
-    const ranking = getRanking();
-    console.log("--- Ranking ---");
-    ranking.forEach((score, index) => {
-        console.log(`${index + 1}. ${score}`);
-    });
-    // Você pode exibir isso visualmente na sua página HTML também
-}
-
-function resetRanking() {
-    localStorage.removeItem('spaceInvadersRanking');
-    console.log("Ranking resetado.");
-    // Atualize a exibição visual se tiver uma
-}
 
