@@ -1,68 +1,197 @@
 /*criated by José Aparecido Finamor - 17/07/2022*/
+/*
+ * Melhorias no CSS para o layout e elementos da pÃ¡gina.
+ * Foco em responsividade, estÃ©tica e legibilidade.
+ */
+
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
+/* Estilos globais para o corpo da pÃ¡gina */
 body {
     margin: 0;
+    /* Garante que o body ocupe toda a altura da viewport */
+    min-height: 100vh; 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    
-}  
+    /* Alinha os itens horizontalmente no centro */
+    justify-content: center; 
+    /* Alinha os itens verticalmente no centro */
+    align-items: center;     
+    background-color: #1a1a1a; /* Um preto um pouco mais suave */
+    color: #f0f0f0; /* Cor de texto padrÃ£o para o body */
+    /* Permite que o layout se adapte em telas menores, empilhando elementos */
+    flex-wrap: wrap; 
+    padding: 20px; /* Adiciona um pouco de padding ao redor do conteÃºdo */
+    box-sizing: border-box; /* Garante que padding e border nÃ£o aumentem o tamanho total */
+    font-family: 'Verdana', sans-serif; /* Define uma fonte padrÃ£o mais legÃ­vel */
+}
+
+/* Estilos para a seÃ§Ã£o esquerda (informaÃ§Ãµes/introduÃ§Ã£o) */
 #left {
     position: relative;
-    width: 350px;
+    /* Largura flexÃ­vel para melhor responsividade, com um mÃ¡ximo */
+    width: 100%; 
+    max-width: 350px; 
     height: auto;
-    margin-right: 50px;
-    top: 5px;
-   
+    /* Margem para separar do elemento central em telas maiores */
+    margin-right: 50px; 
+    /* Remove a posiÃ§Ã£o 'top' fixa para melhor alinhamento flexbox */
+    top: auto; 
+    padding: 20px; /* Adiciona padding interno */
+    background-color: #2a2a2a; /* Fundo levemente diferente para a seÃ§Ã£o */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra sutil */
+    text-align: center; /* Centraliza o texto dentro da caixa */
+    /* Ajusta a margem para telas menores */
+    margin-bottom: 30px; 
+    margin-right: 0; /* Remove a margem direita em telas pequenas */
 }
-h1,h3 {
+
+/* Estilos para tÃ­tulos h1 e h3 */
+h1, h3 {
     font-family: 'Audiowide', cursive;
+    /* Adiciona uma sombra ao texto para melhor contraste */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+    margin-bottom: 10px; /* EspaÃ§amento abaixo dos tÃ­tulos */
 }
+
+/* Cores para tÃ­tulos e Ãªnfase */
 h1, h3, em {
-    color: darkgoldenrod;
+    color: #daa520; /* Darkgoldenrod */
 }
+
+/* Estilos para o parÃ¡grafo de introduÃ§Ã£o */
 .intro {
-    
-    font-family: Verdana;
- 
-   
-    
-}
-.intro{
-    color: teal;
+    font-family: Verdana, sans-serif;
+    color: #008080; /* Teal */
     text-align: justify;
+    line-height: 1.6; /* Melhora a legibilidade do texto */
+    padding: 0 10px; /* Pequeno padding horizontal */
+    margin-top: 15px; /* EspaÃ§amento acima do texto */
 }
+
+/* Estilos para a seÃ§Ã£o central (onde o canvas provavelmente estarÃ¡) */
 #center {
     position: relative;
-}     
+    /* Garante que o elemento central seja flexÃ­vel */
+    width: 100%; 
+    max-width: 800px; /* Define uma largura mÃ¡xima para o centro */
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    background-color: #2a2a2a; /* Fundo similar ao #left */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+/* Estilos para a exibiÃ§Ã£o da pontuaÃ§Ã£o */
 .score {
     position: absolute;
     z-index: 10;
-    color: white;
-    left: 15px;
-    top: 30px;
+    color: #f0f0f0; /* Branco suave */
+    left: 20px; /* Ajuste para melhor posicionamento */
+    top: 20px; /* Ajuste para melhor posicionamento */
     margin: 0;
-    font-family: sans-serif;
-    font-size: 14px;
+    font-family: 'Audiowide', cursive; /* Usa a fonte Audiowide para a pontuaÃ§Ã£o */
+    font-size: 1.2em; /* Tamanho da fonte um pouco maior */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra para destaque */
 }
-canvas {
-    
-    margin-top: 20px;
-}
-#scoreEl {
-    color:orange;
-}
-#btn {
-    margin-left: 15px;
-    padding: 5px;
-    width: 100px;
-    height: 30px;
-    background-color:teal;
-    color: white;
-    border-radius: 20px;
-    visibility: hidden;
 
+/* Estilos para o elemento do canvas */
+canvas {
+    display: block; /* Remove espaÃ§o extra abaixo do canvas */
+    margin-top: 20px;
+    background-color: #000; /* Fundo preto para o canvas */
+    border-radius: 8px; /* Cantos arredondados para o canvas */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3); /* Sombra interna e externa */
+    /* Garante que o canvas seja responsivo */
+    max-width: 100%; 
+    height: auto; 
+}
+
+/* Estilos para o elemento da pontuaÃ§Ã£o especÃ­fica */
+#scoreEl {
+    color: #ffa500; /* Laranja vibrante */
+    font-weight: bold; /* Deixa a pontuaÃ§Ã£o mais negrito */
+}
+
+/* Estilos para o botÃ£o */
+#btn {
+    /* Centraliza o botÃ£o dentro do seu container flex */
+    margin: 20px auto 0 auto; 
+    padding: 10px 20px; /* Aumenta o padding para um botÃ£o maior */
+    width: auto; /* Largura automÃ¡tica baseada no conteÃºdo */
+    min-width: 120px; /* Largura mÃ­nima para o botÃ£o */
+    height: auto;
+    background-color: #008080; /* Teal */
+    color: white;
+    border: none; /* Remove a borda padrÃ£o */
+    border-radius: 25px; /* Mais arredondado */
+    visibility: hidden;
+    cursor: pointer; /* Indica que Ã© clicÃ¡vel */
+    font-family: 'Audiowide', cursive; /* Usa a fonte Audiowide */
+    font-size: 1em; /* Tamanho da fonte do botÃ£o */
+    transition: all 0.3s ease; /* TransiÃ§Ã£o suave para efeitos de hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para o botÃ£o */
+}
+
+/* Efeito de hover para o botÃ£o */
+#btn:hover {
+    background-color: #006666; /* Teal mais escuro no hover */
+    transform: translateY(-3px); /* Efeito de "levantar" */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Sombra maior no hover */
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Empilha os elementos em telas menores */
+        padding: 15px;
+    }
+
+    #left {
+        margin-right: 0; /* Remove margem direita */
+        margin-bottom: 30px; /* Adiciona margem inferior */
+        max-width: 90%; /* Ajusta a largura mÃ¡xima */
+    }
+
+    #center {
+        max-width: 90%; /* Ajusta a largura mÃ¡xima */
+    }
+
+    .score {
+        font-size: 1em; /* Reduz o tamanho da fonte da pontuaÃ§Ã£o */
+        left: 15px;
+        top: 15px;
+    }
+
+    #btn {
+        min-width: 100px; /* Ajusta largura mÃ­nima do botÃ£o */
+        padding: 8px 15px; /* Ajusta padding do botÃ£o */
+        font-size: 0.9em; /* Reduz o tamanho da fonte do botÃ£o */
+    }
+}
+
+
+
+
+@media (max-width: 480px) {
+    #left, #center {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        font-size: 1.8em; /* Reduz o tamanho do h1 */
+    }
+
+    h3 {
+        font-size: 1.2em; /* Reduz o tamanho do h3 */
+    }
+
+    .intro {
+        font-size: 0.9em; /* Reduz o tamanho da fonte do intro */
+        line-height: 1.5;
+    }
 }
