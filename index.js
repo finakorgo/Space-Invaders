@@ -214,7 +214,7 @@ const keys = {
 
 let frames = 0;
 let randomInterval = Math.floor(Math.random() * 500 + 500);
-let game = { over: false, active: true };
+let game = { over: false, active: true, paused: false };
 let score = 0;
 
 // ========== Funções Auxiliares ==========
@@ -253,6 +253,16 @@ for (let i = 0; i < 100; i++) {
 function animate() {
     if (!game.active) {
         document.getElementById("btn").style.visibility = "visible";
+        return;
+    }
+
+    if (game.paused) {
+        c.fillStyle = 'rgba(0,0,0,0.5)';
+        c.fillRect(0, 0, canvas.width, canvas.height);
+        c.fillStyle = 'white';
+        c.font = '48px Arial';
+        c.textAlign = 'center';
+        c.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
         return;
     }
 
@@ -373,7 +383,12 @@ animate();
 
 // ========== Eventos de Teclado ==========
 addEventListener('keydown', ({ key }) => {
-    if (game.over) return;
+    if (key === 'p') {
+        game.paused = !game.paused;
+        if (!game.paused) animate(); // Resume animation if unpausing
+        return;
+    }
+    if (game.over || game.paused) return;
 
     switch (key) {
         case 'a':
