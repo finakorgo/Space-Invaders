@@ -9,7 +9,7 @@ const c = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
-const backgroundAudio = new Audio("Audio/intro.mp3");
+const backgroundAudio = new Audio("Audio/star.mp3");
 backgroundAudio.loop = true;
 backgroundAudio.play();
 
