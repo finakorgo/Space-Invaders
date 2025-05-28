@@ -305,6 +305,18 @@ function animate() {
             game.over = true;
 
             setTimeout(() => game.active = false, 2000);
+
+            // Leaderboard logic
+            let leaderboard = getLeaderboard();
+            if (nickname) {
+                leaderboard.push({ name: nickname, score });
+                leaderboard = leaderboard
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 5);
+                saveLeaderboard(leaderboard);
+                updateLeaderboardDisplay();
+            }
+
             createParticles({ object: player, color: 'white', fades: true });
         }
     });
@@ -421,3 +433,28 @@ addEventListener('keyup', ({ key }) => {
             break;
     }
 });
+
+const nicknameInput = document.getElementById('nickname');
+const leaderboardList = document.getElementById('leaderboardList');
+let nickname = localStorage.getItem('nickname') || '';
+nicknameInput.value = nickname;
+nicknameInput.addEventListener('input', (e) => {
+    nickname = e.target.value.trim();
+    localStorage.setItem('nickname', nickname);
+});
+
+function getLeaderboard() {
+    return JSON.parse(localStorage.getItem('leaderboard') || '[]');
+}
+
+function saveLeaderboard(leaderboard) {
+    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+}
+
+function updateLeaderboardDisplay() {
+    const leaderboard = getLeaderboard();
+    leaderboardList.innerHTML = leaderboard.map((entry, i) =>
+        `<li>${i + 1}. <span class="font-bold">${entry.name}</span> - <span class="text-indigo-300">${entry.score}</span></li>`
+    ).join('');
+}
+updateLeaderboardDisplay();
